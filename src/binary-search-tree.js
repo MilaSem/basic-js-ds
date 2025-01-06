@@ -15,11 +15,23 @@ class BinarySearchTree {
     return this.tree;
   }
 
-  add(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  add(data) {
+    this.tree = this._add(this.tree, data);
   }
 
+  _add(node, data) {
+    if (!node) {
+      return new Node(data);
+    }
+
+    if (data < node.data) {
+      node.left = this._add(node.left, data);
+    } else if (data > node.data) {
+      node.right = this._add(node.right, data);
+    }
+
+    return node;
+  }
   has(/* data */) {
     throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
