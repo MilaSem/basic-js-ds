@@ -70,6 +70,22 @@ class BinarySearchTree {
       node.right = this._remove(node.right, data);
     }
 
+    if (data === node.data) {
+      if (!node.left) {
+        return node.right;
+      }
+      if (!node.right) {
+        return node.left;
+      }
+
+      // если у найденного узла два ребёнка
+      // находим наименьший элемент, который больше текущего узла
+      // заменяем данные текущего узла на это мин значение
+      // удаляем мин узел из правого поддерева
+      node.data = this._min(node.right);
+      node.right = this._remove(node.right, this._min(node.right));
+    }
+
     return node;
   }
 
